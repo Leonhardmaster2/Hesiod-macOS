@@ -45,6 +45,20 @@ find_package(Qt6 REQUIRED COMPONENTS Core Widgets OpenGL OpenGLWidgets
                                      WebEngineWidgets)
 find_package(nlohmann_json REQUIRED)
 
+# Apple's OpenCL framework does not provide the C++ headers used by CLWrapper.
+# On macOS, FindOpenCL pairs the framework with the separately installed header
+# package and this include path is inherited by the nested HighMap build.
+if(APPLE)
+  find_package(OpenCL REQUIRED)
+  find_path(HESIOD_OPENCL_CPP_INCLUDE_DIR CL/opencl.hpp)
+  if(NOT HESIOD_OPENCL_CPP_INCLUDE_DIR)
+    message(FATAL_ERROR
+            "macOS requires the OpenCL C++ headers (CL/opencl.hpp) to build CLWrapper.")
+  endif()
+  include_directories(SYSTEM ${OpenCL_INCLUDE_DIR}
+                             ${HESIOD_OPENCL_CPP_INCLUDE_DIR})
+endif()
+
 add_compile_definitions(
   CL_HPP_MINIMUM_OPENCL_VERSION=120 CL_HPP_TARGET_OPENCL_VERSION=120
   HSD_DEFAULT_GPU_MODE=true)

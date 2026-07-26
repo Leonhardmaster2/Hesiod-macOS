@@ -33,18 +33,15 @@ kimi -r session_081fe8c1-2073-4b01-a0b3-038e47327d40
 ```
 
 The audit covered the CMake configuration, Qt UI, renderer, compute code,
-dependencies, packaging, tests, and licenses. A real configure attempt was also
-made on an arm64 Mac running macOS 27 and Xcode 27. It currently stops at the
-intentional Apple platform guard:
+dependencies, packaging, tests, and licenses. A real configure and native build
+attempt is being made on an arm64 Mac running macOS 27 and Xcode 27. The first
+baseline configures successfully after installing GSL and the OpenCL C/C++
+header packages. It also compiles HighMap and proceeds into Hesiod's own
+sources; the final build result is tracked in the macOS fork's draft pull
+request.
 
-```text
-CMake Error at CMakeLists.txt:5 (message):
-  macOS is NOT supported by this project.
-```
-
-The machine already has arm64 builds of Qt 6.10, Qt WebEngine, OpenCV, assimp,
-Boost, Eigen, GLEW, GLFW, GLM, libomp, nlohmann-json, and spdlog. GSL is the
-notable missing Homebrew dependency.
+The machine has arm64 builds of Qt, Qt WebEngine, OpenCV, assimp, Boost, Eigen,
+GLEW, GLFW, GLM, GSL, libomp, nlohmann-json, spdlog, and the OpenCL headers.
 
 ## Why the port is viable
 

@@ -75,6 +75,31 @@ Start the main executable:
 bin/./hesiod
 ```
 
+### macOS (Apple silicon, experimental)
+
+Install the required packages with Homebrew:
+
+```sh
+brew install qt qtwebengine opencv assimp boost eigen glew glfw glm gsl libomp \
+  nlohmann-json spdlog opencl-headers opencl-clhpp-headers
+```
+
+Configure and build from the repository root:
+
+```sh
+cmake -S . -B build \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DCMAKE_PREFIX_PATH="$(brew --prefix qt);$(brew --prefix qtwebengine);$(brew --prefix opencl-headers);$(brew --prefix opencl-clhpp-headers)" \
+  -DOpenMP_ROOT="$(brew --prefix libomp)" \
+  -DOpenCL_INCLUDE_DIR="$(brew --prefix opencl-headers)/include"
+cmake --build build --target hesiod --parallel 2
+```
+
+This is an in-progress native macOS port. The build currently uses Apple's
+legacy OpenGL and OpenCL frameworks; it is intended for direct distribution,
+not the Mac App Store. See `docs/macos-port-feasibility.md` for scope and
+remaining packaging work.
+
 ## Dependencies and moudle structures
 
 ```mermaid
