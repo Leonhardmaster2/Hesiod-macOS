@@ -48,6 +48,30 @@ QLineEdit {
     padding: 4px 7px;
 }
 
+QComboBox {
+    combobox-popup: 0;
+}
+
+QComboBox QAbstractItemView {
+    background-color: COLOR_BG_SECONDARY;
+    color: COLOR_TEXT_PRIMARY;
+    border: 1px solid COLOR_BORDER;
+    border-radius: 6px;
+    outline: 0px;
+    padding: 4px;
+    selection-background-color: COLOR_ACCENT;
+    selection-color: COLOR_TEXT_PRIMARY;
+}
+
+QComboBox QAbstractItemView::item {
+    min-height: 24px;
+    padding: 3px 8px;
+}
+
+QComboBox QAbstractItemView::item:hover {
+    background-color: COLOR_HOVER;
+}
+
 QGroupBox {
     border: 1px solid COLOR_BORDER;
     border-radius: 8px;

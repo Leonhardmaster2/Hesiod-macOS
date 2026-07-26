@@ -12,6 +12,7 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QProgressDialog>
+#include <QScrollArea>
 #include <QStatusBar>
 #include <QUrl>
 
@@ -252,14 +253,19 @@ void HesiodApplication::on_application_settings_action()
   Logger::log()->trace("HesiodApplication::on_application_settings_action");
 
   // initialize app settings widget
-  AppSettingsWindow *settings_window = new AppSettingsWindow(this->main_window);
+  AppSettingsWindow *settings_window = new AppSettingsWindow;
 
   // open in a dialog
   QDialog dialog(this->main_window);
   dialog.setWindowTitle("Application Settings");
+  dialog.resize(640, 720);
 
   QVBoxLayout *layout = new QVBoxLayout(&dialog);
-  layout->addWidget(settings_window);
+  auto *scroll_area = new QScrollArea(&dialog);
+  scroll_area->setFrameShape(QFrame::NoFrame);
+  scroll_area->setWidgetResizable(true);
+  scroll_area->setWidget(settings_window);
+  layout->addWidget(scroll_area);
 
   QDialogButtonBox *button_box = new QDialogButtonBox(QDialogButtonBox::Ok);
   button_box->button(QDialogButtonBox::Ok)->setDefault(true);

@@ -50,7 +50,7 @@ protected:
 private:
   std::weak_ptr<BaseNode> model;
   int                     preview_port_index;
-  PreviewType             preview_type = PreviewType::GRAYSCALE;
+  PreviewType             preview_type = PreviewType::TERRAIN;
   QPixmap                 preview_pixmap;
 };
 

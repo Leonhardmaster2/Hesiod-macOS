@@ -19,9 +19,17 @@ private:
 
   void add_description(const std::string &description, int max_length = 64);
   void add_title(const std::string &label, int font_size_delta = 2);
-  void bind_bool(const std::string &label, bool &state);
-  void bind_int(const std::string &label, int &value);
-  void bind_qcolor(const std::string &label, QColor &color);
+  void bind_bool(const std::string &label,
+                 bool              &state,
+                 const std::string &tool_tip = "");
+  void bind_int(const std::string &label,
+                int               &value,
+                int                minimum = 1,
+                int                maximum = 64,
+                const std::string &tool_tip = "");
+  void bind_qcolor(const std::string &label,
+                   QColor            &color,
+                   const std::string &tool_tip = "");
 
   QVBoxLayout *layout = nullptr;
 };
