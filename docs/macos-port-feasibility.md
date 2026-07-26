@@ -36,9 +36,10 @@ The audit covered the CMake configuration, Qt UI, renderer, compute code,
 dependencies, packaging, tests, and licenses. A real configure and native build
 attempt is being made on an arm64 Mac running macOS 27 and Xcode 27. The first
 baseline configures successfully after installing GSL and the OpenCL C/C++
-header packages. It also compiles HighMap and proceeds into Hesiod's own
-sources; the final build result is tracked in the macOS fork's draft pull
-request.
+header packages. The `hesiod` arm64 executable now builds and its CLI smoke
+test initializes the Apple M3 OpenCL GPU, compiles the terrain kernels, and
+enables OpenMP. The macOS fork's draft pull request tracks the remaining app
+bundle and packaging work.
 
 The machine has arm64 builds of Qt, Qt WebEngine, OpenCV, assimp, Boost, Eigen,
 GLEW, GLFW, GLM, GSL, libomp, nlohmann-json, spdlog, and the OpenCL headers.
