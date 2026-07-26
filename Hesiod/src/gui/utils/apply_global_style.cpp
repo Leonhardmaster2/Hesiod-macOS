@@ -20,6 +20,12 @@ void apply_global_style(QApplication &app)
 #include "hesiod/gui/darkstyle.css"
       ;
 
+#if defined(HSD_OS_MACOS)
+  style_sheet +=
+#include "hesiod/gui/macosstyle.css"
+      ;
+#endif
+
   AppContext &ctx = HSD_CTX;
 
   std::map<std::string, QColor> place_holders = {

@@ -1,0 +1,145 @@
+R""(
+/* macOS refinement layer --------------------------------------------------
+   Keep Hesiod's dark workspace, but give controls the compact, quiet
+   hierarchy expected of a native macOS application. */
+
+QDialog,
+QMessageBox {
+    background-color: COLOR_BG_PRIMARY;
+}
+
+QStatusBar {
+    border: 0px;
+    border-top: 1px solid COLOR_SEPARATOR;
+    border-radius: 0px;
+    padding: 6px 10px;
+}
+
+QTabWidget::pane {
+    border: 0px;
+    border-radius: 0px;
+}
+
+QTabBar::tab {
+    background: transparent;
+    border: 0px;
+    border-radius: 6px;
+    margin: 2px 4px;
+    min-height: 28px;
+    padding: 7px 10px;
+}
+
+QTabBar::tab:hover {
+    background: COLOR_HOVER;
+}
+
+QTabBar::tab:selected {
+    background: COLOR_PRESSED;
+    margin-bottom: 2px;
+}
+
+QAbstractSpinBox,
+QComboBox,
+QLineEdit {
+    background-color: COLOR_BG_SECONDARY;
+    border: 1px solid COLOR_BORDER;
+    border-radius: 6px;
+    min-height: 22px;
+    padding: 4px 7px;
+}
+
+QGroupBox {
+    border: 1px solid COLOR_BORDER;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+QGroupBox::title {
+    padding: 0px 5px;
+}
+
+QCheckBox {
+    spacing: 8px;
+    padding: 3px 0px;
+}
+
+QCheckBox::indicator,
+QTableView::indicator {
+    width: 15px;
+    height: 15px;
+    border: 1px solid COLOR_TEXT_DISABLED;
+    border-radius: 4px;
+}
+
+QCheckBox::indicator:checked,
+QTableView::indicator:checked {
+    background-color: COLOR_ACCENT;
+    border-color: COLOR_ACCENT;
+}
+
+QPushButton,
+QToolButton {
+    background-color: COLOR_BG_SECONDARY;
+    border: 1px solid COLOR_BORDER;
+    border-radius: 6px;
+    min-height: 22px;
+    padding: 5px 9px;
+}
+
+QToolButton {
+    background: transparent;
+    border-color: transparent;
+    padding: 4px;
+}
+
+QToolButton:hover {
+    border-color: COLOR_BORDER;
+}
+
+QTreeView,
+QListView,
+QTableView,
+QColumnView {
+    border: 0px;
+    border-radius: 6px;
+    alternate-background-color: COLOR_BG_SECONDARY;
+}
+
+QSlider::groove:horizontal {
+    height: 4px;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    width: 14px;
+    height: 14px;
+    margin: -5px 0px;
+    border-radius: 7px;
+}
+
+QSlider::groove:vertical {
+    width: 4px;
+    border-radius: 2px;
+}
+
+QSlider::handle:vertical {
+    width: 14px;
+    height: 14px;
+    margin: 0px -5px;
+    border-radius: 7px;
+}
+
+QPlainTextEdit,
+QTextEdit {
+    border: 1px solid COLOR_BORDER;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+QToolTip {
+    border: 1px solid COLOR_BORDER;
+    border-radius: 6px;
+    padding: 6px;
+}
+)""
