@@ -171,6 +171,16 @@ void HesiodApplication::load_project_model_and_ui(const std::string &fname,
 
   this->context.load_project_model(actual_fname);
 
+  // A missing startup project must not leave the UI without a project model.
+  // This can happen when an executable is launched outside its runtime data
+  // directory or when a user removes the configured startup file.
+  if (!this->context.project_model)
+  {
+    Logger::log()->error("Could not load project [{}]; creating an empty project instead.",
+                         actual_fname);
+    this->context.new_project();
+  }
+
   // --- UI
 
   // remove first old central widget (if any) so it doesn't linger
