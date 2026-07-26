@@ -3,6 +3,10 @@
  * this software. */
 typedef unsigned int uint;
 
+#include <filesystem>
+
+#include <QSurfaceFormat>
+
 #include "hesiod/app/hesiod_application.hpp"
 #include "hesiod/cli/batch_mode.hpp"
 #include "hesiod/logger.hpp"
@@ -15,8 +19,46 @@ typedef unsigned int uint;
 #define HSD_RMODE "!!! UNDEFINED !!!"
 #endif
 
+namespace
+{
+void set_runtime_data_directory(char *executable_path)
+{
+  if (!executable_path)
+    return;
+
+  std::error_code error;
+  auto            executable = std::filesystem::absolute(executable_path, error);
+
+  if (error)
+    return;
+
+  const auto runtime_directory = executable.parent_path();
+
+  if (std::filesystem::is_directory(runtime_directory / "data", error))
+    std::filesystem::current_path(runtime_directory, error);
+}
+
+void configure_opengl_context()
+{
+#if defined(HSD_OS_MACOS)
+  // macOS otherwise defaults Qt Widgets to a legacy OpenGL context.  The
+  // terrain renderer requires GLSL 3.30 Core shaders.
+  QSurfaceFormat format;
+  format.setRenderableType(QSurfaceFormat::OpenGL);
+  format.setVersion(3, 3);
+  format.setProfile(QSurfaceFormat::CoreProfile);
+  format.setDepthBufferSize(24);
+  format.setStencilBufferSize(8);
+  QSurfaceFormat::setDefaultFormat(format);
+#endif
+}
+} // namespace
+
 int main(int argc, char *argv[])
 {
+  set_runtime_data_directory(argc > 0 ? argv[0] : nullptr);
+  configure_opengl_context();
+
   hesiod::Logger::log()->info("Welcome to Hesiod v{}.{}.{}!",
                               HESIOD_VERSION_MAJOR,
                               HESIOD_VERSION_MINOR,
