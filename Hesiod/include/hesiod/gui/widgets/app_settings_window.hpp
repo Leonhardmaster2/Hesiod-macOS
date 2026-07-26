@@ -1,8 +1,8 @@
 /* Copyright (c) 2025 Otto Link. Distributed under the terms of the GNU General Public
    License. The full license is in the file LICENSE, distributed with this software. */
 #pragma once
-#include <QFormLayout>
 #include <QObject>
+#include <QVBoxLayout>
 #include <QWidget>
 
 namespace hesiod
@@ -23,7 +23,7 @@ private:
   void bind_int(const std::string &label, int &value);
   void bind_qcolor(const std::string &label, QColor &color);
 
-  QFormLayout *layout;
+  QVBoxLayout *layout = nullptr;
 };
 
 } // namespace hesiod
